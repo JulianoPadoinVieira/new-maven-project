@@ -1,36 +1,32 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.Properties;
 
 public class ConexaoMySQL {
 
     private static Connection connection;
-    public static void conectar() {
+
+    public static Connection getConexao() {
+
         try {
-            if(connection==null){
+            if (connection == null || connection.isClosed()) {
+
                 String url = "jdbc:mysql://localhost:3306/mysql_local";
                 String user = "root";
                 String password = "123456";
-                connection = DriverManager.getConnection(url, user, password);
 
-                System.out.println("Conexão efetuada com sucessso!");
+                connection =
+                        DriverManager.getConnection(url, user, password);
 
+                System.out.println("Conexão efetuada com sucesso!");
             }
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
+
+            return connection;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
-
     }
-
-    public static Connection getConexao() {
-        return connection;
-    }
-
-
-
 
 
 }

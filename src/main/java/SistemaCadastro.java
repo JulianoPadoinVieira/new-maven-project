@@ -1,15 +1,19 @@
-
 public class SistemaCadastro {
     public static void main(String[] args) {
 
-        ConexaoMySQL.conectar();
-        CadastroRepository repository = new CadastroRepository();
-        CadastroCliente cadastro = new CadastroCliente();
-        cadastro.setName("Bento");
-        cadastro.setAge(2);
-        cadastro.setEmail("bento@hotmail.com");
+        CadastroCliente cadastroCliente = new CadastroCliente();
+        CrudCadastro crudCadastro = new CrudCadastro();
 
-        repository.salvar(cadastro);
+        cadastroCliente.setName("Chica");
+        cadastroCliente.setAge(19);
+        cadastroCliente.setEmail("chica@hotmail.com");
+
+        crudCadastro.salvar(cadastroCliente);
+
+        CadastroCliente atualizarCliente = new CadastroCliente();
+        atualizarCliente.setName("Dorothy");
+        atualizarCliente.setEmail("dorothy@gmail.com");
+        crudCadastro.alterar(atualizarCliente);
 
 
 

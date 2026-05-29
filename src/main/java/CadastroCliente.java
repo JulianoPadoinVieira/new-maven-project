@@ -4,7 +4,6 @@ public class CadastroCliente {
     Integer age;
     String email = "";
 
-
     public String getName() {
         return name;
     }
