@@ -43,7 +43,18 @@ public class CrudCadastro {
 
     }
 
-    public void excluir(Integer id){
+    public void excluir(CadastroCliente cadastro){
+
+        String sqlInstruction = "DELETE FROM cadastro WHERE id = ?";
+
+        try (PreparedStatement con = connection.prepareStatement(sqlInstruction)) {
+            con.setInt(2, cadastro.getId());
+
+            int rows = con.executeUpdate();
+            System.out.println("O usuário " + 5 + " foi deletado com sucesso.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

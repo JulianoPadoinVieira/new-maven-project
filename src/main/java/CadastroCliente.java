@@ -1,8 +1,17 @@
 public class CadastroCliente {
 
+    int id = 0;
     String name = "";
     Integer age;
     String email = "";
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

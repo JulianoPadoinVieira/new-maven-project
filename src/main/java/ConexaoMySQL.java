@@ -12,7 +12,7 @@ public class ConexaoMySQL {
 
                 String url = "jdbc:mysql://localhost:3306/mysql_local";
                 String user = "root";
-                String password = "123457";
+                String password = "123456";
 
                 connection =
                         DriverManager.getConnection(url, user, password);

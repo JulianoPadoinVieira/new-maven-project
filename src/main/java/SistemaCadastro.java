@@ -15,6 +15,12 @@ public class SistemaCadastro {
         atualizarCliente.setEmail("dorothy@gmail.com");
         crudCadastro.alterar(atualizarCliente);
 
+        CadastroCliente deletarCliente = new CadastroCliente();
+        deletarCliente.setId(5);
+
+
+
+
 
 
     }
