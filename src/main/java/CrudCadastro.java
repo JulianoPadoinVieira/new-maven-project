@@ -41,7 +41,7 @@ public class CrudCadastro {
             con.setInt(3, cadastro.getId());
 
             con.executeUpdate();
-            System.out.println("Informações do cliente com ID; " + cadastro.getId() + " atualizadas com sucesso.");
+            System.out.println("Informações do cliente com ID " + cadastro.getId() + " atualizadas com sucesso.");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,7 +68,7 @@ public class CrudCadastro {
         List<CadastroCliente> lista = new ArrayList<>();
 
         try {
-            String sqlInstruction = "SELECT id, nome, email FROM cadastro;";
+            String sqlInstruction = "SELECT id, nome, idade, email FROM cadastro;";
             PreparedStatement statement = connection.prepareStatement(sqlInstruction);
             ResultSet result = statement.executeQuery();
 
@@ -77,7 +77,6 @@ public class CrudCadastro {
                 String nome = result.getString("nome");
                 int idade = result.getInt("idade");
                 String email = result.getString("email");
-                System.out.println(id + " - " + nome + " - " + idade + " - " + email);
 
                 CadastroCliente cadastro = new CadastroCliente();
                 cadastro.setId(id);
@@ -86,10 +85,6 @@ public class CrudCadastro {
                 cadastro.setEmail(email);
 
                 lista.add(cadastro);
-
-
-
-
             }
 
         } catch (Exception e) {
@@ -99,26 +94,45 @@ public class CrudCadastro {
         return lista;
     }
 
-    public CadastroCliente buscar(){
+    public CadastroCliente buscar(int id){
+        CadastroCliente cadastroId = null;
+        try{
+            String sqlInstruction = "SELECT * FROM cadastro WHERE id = ?";
+            PreparedStatement statement = connection.prepareStatement(sqlInstruction);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            if (result.next()){
+                id = result.getInt("id");
+                String nome = result.getString("nome");
+                int idade = result.getInt("idade");
+                String email = result.getString("email");
 
-//        String sqlInstruction = "SELECT * FROM cadastro";
-//
-//        try (PreparedStatement con = connection.prepareStatement(sqlInstruction)
+                cadastroId = new CadastroCliente();
+                cadastroId.setId(id);
+                cadastroId.setName(nome);
+                cadastroId.setAge(idade);
+            }
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return cadastroId;
+
+//        try ();
 //            Statement stmt = con.createStatement();
-//            ResultSet rs = stmt.executeQuery(sqlInstruction)){
-//            while (rs.next()) {
+//
+//            con.setInt(1, id);
+//
 //                System.out.println(rs.getInt("ID: ") + " | " +
 //                        rs.getString("Nome: ") + " | " +
 //                        rs.getInt("Idade: ") + " | " +
 //                        rs.getString("E-mail: "));
-//            }
-//
 //
 //        }catch(Exception e) {
 //            e.printStackTrace();
-//        }
-
-        return null;
+//        }//
+//        return null;
     }
 
 }

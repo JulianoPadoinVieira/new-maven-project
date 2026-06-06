@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class SistemaCadastro {
     public static void main(String[] args) {
 
@@ -19,14 +21,23 @@ public class SistemaCadastro {
         crudCadastro.alterar(atualizarCliente);
 
         CadastroCliente deletarCliente = new CadastroCliente();
-//        deletarCliente.setId(18);
         crudCadastro.excluir(26);
 
+        //crudCadastro.listar();
+        CrudCadastro listarClientes = new CrudCadastro();
+        List<CadastroCliente> listarTodosClientes = listarClientes.listar();
+        for (CadastroCliente c: listarTodosClientes) {
+            System.out.println(c.getId() + " - " + c.getName() + " - " + c.getAge() + " - " + c.getEmail());
+        }
 
-
-
-
-
+        //crudBuscarPorId
+        CrudCadastro crudCadastroId = new CrudCadastro();
+        CadastroCliente cadastroId = crudCadastroId.buscar(9);
+        if (cadastroId!= null){
+            System.out.println("| ID: " + cadastroId.getId() + " | Nome:  " + cadastroId.getName());
+        }else{
+            System.out.println("ID não localizado.");
+        }
 
     }
 }
